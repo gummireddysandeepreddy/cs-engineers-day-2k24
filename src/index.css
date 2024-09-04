@@ -31,6 +31,18 @@
   width: 100%;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-flex{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 input:invalid {
   outline: 2px solid red;
   background-color: rgb(255, 255, 139);
