@@ -1,12 +1,16 @@
 import Form from "./components/Form"
 import { FormProvider } from './context/FormContext'
+import Header from "./components/header"
 
 function App() {
 
   return (
-    <FormProvider>
-      <Form />
-    </FormProvider>
+    <>
+      <Header />
+      <FormProvider>
+        <Form />
+      </FormProvider>
+    </>
   )
 
 }

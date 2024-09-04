@@ -26,12 +26,20 @@ export const FormProvider = ({ children }) => {
         TransactionID: "",
     })
 
-    const [transactionScreenShot, setTransactionScreenShot] = useState(null);
+    const [transactionScreenShot, setTransactionScreenShot] = useState('');
 
     const handleImageChange = (event) => {
-        const file = event.target.files[0];   
-
-        setTransactionScreenShot(file);
+        console.log(event.target.files[0]);
+        const file = event.target.files[0];
+        console.log(file);
+        const reader = new FileReader();
+        reader.onload = (event1) => {
+            const image = event1.target.result;
+            console.log(image);
+            // Do something with the image variable
+        };
+        reader.readAsDataURL(file);
+        setTransactionScreenShot(reader.result);
     };
 
     const handleChange = e => {
