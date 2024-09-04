@@ -13,16 +13,32 @@ const Form = () => {
         disableNext,
         prevHide,
         nextHide,
-        submitHide
+        submitHide,
+        transactionScreenShot
     } = useFormContext()
 
     const handlePrev = () => setPage(prev => prev - 1)
 
     const handleNext = () => setPage(prev => prev + 1)
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(JSON.stringify(data))
+        const d = data
+        d.TransactionScreenShot = transactionScreenShot
+        const response = await fetch("https://script.google.com/macros/s/AKfycbx3qt5I4Lh07azL3DjVzyXsCFPbvOipYbzIpC46DP3Ds7uLaGokox2rotPbpaEBITMy/exec",{
+            method:'Post',
+            mode:'cors',
+            headers:{'Content-Type':'text/plain',
+                'Access-Control-Request-Method':'POST'
+            },
+            body: JSON.stringify(d)
+        });
+        if(!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const dat = await response.json();
+        console.log(dat);
     }
 
 
